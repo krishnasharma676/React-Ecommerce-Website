@@ -1,9 +1,2 @@
-# Node.js
 node_modules/
-dist/
-build/
-.env
-
-# React
-/build/
  
