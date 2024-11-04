@@ -1,0 +1,38 @@
+/* Footer container */
+.custom-footer {
+    background-color: #2b2d42;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    color: #edf2f4;
+    box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 2rem;
+  }
+  
+  /* Footer text */
+  .footer-text {
+    font-size: 0.9rem;
+    margin: 0;
+    padding-bottom: 0.5rem;
+    color: #edf2f4;
+  }
+  
+  /* Social icons container */
+  .footer-social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  /* Social icon links */
+  .footer-social-icons a {
+    color: #edf2f4;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  /* Hover effect on social icons */
+  .footer-social-icons a:hover {
+    color: #ef233c;
+  }
+  

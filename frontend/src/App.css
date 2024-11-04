@@ -1,0 +1,45 @@
+/* Main app container */
+.app-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Content container for main page content */
+.content {
+  flex: 1;
+}
+
+/* Footer styling */
+.custom-footer {
+  background-color: #2b2d42;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  color: #edf2f4;
+  z-index: 99;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Optional: Header styling (to match layout) */
+.custom-header {
+  background-color: #2b2d42;
+  padding: 0.5rem 2rem;
+  display: flex;
+  z-index: 99;
+  justify-content: center;
+}
+
+/* WIDTH */
+.w-100 {width: 100%;}
+
+/* PADDING */
+.pl-10{
+  padding-left: 10px;
+}
+
+/* MARGIN */
+.ml-10{
+  margin-left: 10px;
+}

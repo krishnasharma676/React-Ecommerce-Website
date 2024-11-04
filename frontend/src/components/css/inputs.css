@@ -1,0 +1,97 @@
+
+.input-wrapper {
+    position: relative;
+    margin-bottom: 1.5rem;
+    padding: 10px 0px 10px 10px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    border-color: #4CAF50;
+  }
+  
+  label {
+    position: absolute;
+    top: 50%;
+    left: 22px;
+    font-size: 1rem;
+    color: #999;
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+  }
+  
+  /* Animation for floating labels */
+  input:focus + label,
+  input:valid + label {
+    top: 12px;
+    left: 20px;
+    font-size: 0.8rem;
+    color: #4CAF50;
+    background: white;
+    padding: 0 5px;
+  }
+  
+  /* Add a background for labels on smaller screens */
+  @media (max-width: 768px) {
+    input:focus + label,
+    input:valid + label {
+      top: 10px;
+    }
+  }
+
+
+  /* Base Button Styles */
+.btn {
+    display: inline-block;
+    padding: 10px 20px; /* Adjust padding for button size */
+    font-size: 12px; /* Font size */
+    color: #4CAF50; /* Text color */
+    border: 1px solid #4CAF50; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline from links */
+    transition: white 0.3s ease, transform 0.2s ease;
+    background-color: transparent;
+    gap: 10px;
+    cursor: pointer; 
+}
+
+/* Hover Effect */
+.btn:hover {
+    background-color: #45a049; /* Darker shade on hover */
+    transform: translateY(-2px); /* Lift effect */
+    color: white;
+}
+
+/* Active Effect */
+.btn:active {
+    transform: translateY(1px); /* Slightly lower on click */
+}
+
+/* Disabled Button */
+.btn:disabled {
+    background-color: #ccc; /* Gray color for disabled state */
+    color: #666; /* Lighter text color */
+    cursor: not-allowed; /* Change cursor to indicate disabled */
+}
+
+.err-span{
+    position: absolute;
+    left: 13px;
+    bottom: -12px;
+
+}
