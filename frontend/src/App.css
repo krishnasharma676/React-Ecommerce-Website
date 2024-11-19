@@ -1,3 +1,7 @@
+*{
+  padding: 0;
+  margin: 0;
+}
 /* Main app container */
 .app-container {
   display: flex;
@@ -38,8 +42,36 @@
 .pl-10{
   padding-left: 10px;
 }
+.pb-20{
+  padding-bottom: 20px !important;
+}
 
 /* MARGIN */
 .ml-10{
   margin-left: 10px;
+}
+
+/* For Webkit-based Browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background color of the scrollbar track */
+  border-radius: 10px; /* Rounded corners for the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #007bff; /* Color of the scrollbar handle */
+  border-radius: 10px; /* Rounded corners for the handle */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0056b3; /* Hover effect on the scrollbar handle */
+}
+
+/* For Firefox */
+html {
+  scrollbar-width: thin; /* Options: auto | thin | none */
+  scrollbar-color: #007bff #f1f1f1; /* Scrollbar handle and track colors */
 }

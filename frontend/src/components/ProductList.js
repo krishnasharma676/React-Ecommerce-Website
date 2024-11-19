@@ -68,7 +68,6 @@ const ProductList = () => {
 
     return (
         <div className="product-list-container"> {/* Unique class name */}
-            <h2 className="product-list-title">Product List</h2> {/* Unique class name */}
             <input
                 type="text"
                 placeholder="Search for a product..."
@@ -79,6 +78,7 @@ const ProductList = () => {
             <table className="product-table"> {/* Unique class name for table */}
                 <thead>
                     <tr>
+                        <th className="product-table-header">Product Image</th> {/* Unique class name */}
                         <th className="product-table-header">Name</th> {/* Unique class name */}
                         <th className="product-table-header">Price</th> {/* Unique class name */}
                         <th className="product-table-header">Category</th> {/* Unique class name */}
@@ -89,6 +89,17 @@ const ProductList = () => {
                 <tbody>
                     {products.map((product) => (
                         <tr key={product._id} className="product-table-row"> {/* Unique class name */}
+                            <td className="product-image">
+                                {product.productImage ? (
+                                    <img
+                                        src={`data:image/png;base64,${product.productImage}`}
+                                        alt={product.name}
+                                        className="product-image-thumbnail"
+                                    />
+                                ) : (
+                                    <span>No Image</span>
+                                )}
+                            </td>
                             <td className="product-name">{product.name}</td> {/* Unique class name */}
                             <td className="product-price">${product.price}</td> {/* Unique class name */}
                             <td className="product-category">{product.category}</td> {/* Unique class name */}

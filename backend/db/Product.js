@@ -4,7 +4,10 @@ const userSchema = new mongoose.Schema({
     price: String,
     category: String,
     userId: String,
-    company: String
+    company: String,
+    productImage: { 
+        type: String // Store the Base64 string here
+    }
 })
 
 module.exports = mongoose.model("products",userSchema)

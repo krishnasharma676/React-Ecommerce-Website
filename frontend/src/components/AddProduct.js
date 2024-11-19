@@ -3,14 +3,16 @@ import './css/AddProduct.css';
 
 const AddProduct = () => {
     const user = JSON.parse(localStorage.getItem('user'));
-    const userId = user ? user._id : null; 
+    const userId = user ? user._id : null;
 
     const [formData, setFormData] = useState({
         name: '',
         price: '',
         category: '',
         company: '',
+        productImage: null,
         userId: userId,
+        count: 0,
     });
 
     const [errors, setErrors] = useState({});
@@ -38,30 +40,27 @@ const AddProduct = () => {
     // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!validate()) return;
+
+        // Create a FormData object
+        const formDataToSend = new FormData();
+        formDataToSend.append('name', formData.name);
+        formDataToSend.append('price', formData.price);
+        formDataToSend.append('category', formData.category);
+        formDataToSend.append('company', formData.company);
+        formDataToSend.append('productImage', formData.productImage); // Append the image file
+        formDataToSend.append('count', formData.count); // Append the image file
 
         try {
-            // Create a plain object instead of using FormData
-            const data = {
-                name: formData.name,
-                price: formData.price,
-                category: formData.category,
-                company: formData.company,
-                userId: formData.userId,
-            };
-
-            // Use fetch to send the data as JSON
             const response = await fetch('http://localhost:5000/add-product', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    authorization : JSON.parse(localStorage.getItem('token'))
+                    authorization: JSON.parse(localStorage.getItem('token')),
                 },
-                body: JSON.stringify(data), // Convert the object to a JSON string
+                body: formDataToSend, // Send the FormData
             });
 
             const result = await response.json();
-            if (response.ok) { // Check if the response is successful
+            if (response.ok) {
                 alert('Product added successfully');
                 setFormData({ name: '', price: '', category: '', productImage: null, company: '' });
             } else {
@@ -71,67 +70,85 @@ const AddProduct = () => {
             console.error('Error adding product:', error);
         }
     };
-
+    
 
     return (
-        <div className="add-product-container">
-            <h2 className="add-product-title">Add Product</h2>
-            <form onSubmit={handleSubmit} className="add-product-form">
+        <div className="product-add-container">
+            <h2 className="product-add-title">Add New Product</h2>
+            <form onSubmit={handleSubmit} className="product-add-form">
 
-                <div className="input-wrapper">
-                    <input
-                        type="text"
-                        name="name"
-                        id="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        className="form-input"
-                    />
-                    <label htmlFor="name">Product Name</label>
-                    {errors.name && <span className="err-span">{errors.name}</span>}
+                <div className="product-add-grid">
+                    <div>
+                        <input
+                            type="text"
+                            name="name"
+                            id="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            placeholder="Enter product name"
+                        />
+                        {errors.name && <span className="error-message">{errors.name}</span>}
+                    </div>
+
+                    <div>
+                        <input
+                            type="text"
+                            name="price"
+                            id="price"
+                            value={formData.price}
+                            onChange={handleChange}
+                            placeholder="Enter product price"
+                        />
+                        {errors.price && <span className="error-message">{errors.price}</span>}
+                    </div>
+
+                    <div>
+                        <input
+                            type="text"
+                            name="category"
+                            id="category"
+                            value={formData.category}
+                            onChange={handleChange}
+                            placeholder="Enter category"
+                        />
+                        {errors.category && <span className="error-message">{errors.category}</span>}
+                    </div>
+
+                    <div>
+                        <input
+                            type="text"
+                            name="company"
+                            id="company"
+                            value={formData.company}
+                            onChange={handleChange}
+                            placeholder="Enter company name"
+                        />
+                        {errors.company && <span className="error-message">{errors.company}</span>}
+                    </div>
+
+                    <div>
+                        <input
+                            type="text"
+                            name="count"
+                            id="count"
+                            value={formData.count}
+                            onChange={handleChange}
+                            placeholder="Enter Stock Count"
+                        />
+                    </div>
+
+                    <div>
+                        <input
+                            type="file"
+                            name="productImage"
+                            id="productImage"
+                            onChange={handleChange}
+                        />
+                    </div>
                 </div>
-
-                <div className="input-wrapper">
-                    <input
-                        type="text"
-                        name="price"
-                        id="price"
-                        value={formData.price}
-                        onChange={handleChange}
-                        className="form-input"
-                    />
-                    <label htmlFor="name">Price</label>
-                    {errors.price && <span className="err-span">{errors.price}</span>}
+                <div className='btn-wrap pl-10 pb-20 w-100'>
+                    <button type="submit" className="btn submit-button">Add Product</button>
                 </div>
-
-                <div className="input-wrapper">
-                    <input
-                        type="text"
-                        name="category"
-                        id="category"
-                        value={formData.category}
-                        onChange={handleChange}
-                        className="form-input"
-                    />
-                    <label htmlFor="category">Category</label>
-                    {errors.category && <span className="err-span">{errors.category}</span>}
-                </div>
-
-
-                <div className="input-wrapper">
-                    <input
-                        type="text"
-                        name="company"
-                        id="company"
-                        value={formData.company}
-                        onChange={handleChange}
-                        className="form-input"
-                    />
-                    <label htmlFor="company">Company</label>
-                    {errors.company && <span className="err-span">{errors.company}</span>}
-                </div>
-
-                <button type="submit" className="btn">Add Product</button>
             </form>
         </div>
     );

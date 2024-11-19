@@ -1,24 +1,61 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-.add-product-container {
-  max-width: 450px;
-  margin: 2rem auto;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border: 1px solid #45a049;
-  font-family: 'Poppins', sans-serif;
+.product-add-container {
+  margin: 23px;
+  background-color: white;
+  border-radius: 10px;
 }
 
-.add-product-title {
-  font-size: 1.8rem;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 1.5rem;
-  color: #333;
+.product-add-title {
+    font-weight: 600;
+    padding: 20px 0px 0px 20px;
 }
 
-.add-product-form .form-group {
-  margin-bottom: 1rem;
+.product-add-form {
+    display: grid;
+    gap: 1.5rem;
 }
 
+.product-add-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    padding: 20px;
+}
+
+.product-add-form input[type="text"],
+.product-add-form input[type="file"] {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.product-add-form input[type="text"]:focus,
+.product-add-form input[type="file"]:focus {
+    border-color: #45a049;
+}
+
+.product-add-form label {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.error-message {
+    font-size: 0.8rem;
+    color: #f44336;
+    margin-top: 5px;
+}
+
+.submit-button:hover {
+    background-color: #388e3c;
+}
+
+@media (max-width: 768px) {
+    .product-add-grid {
+        grid-template-columns: 1fr;
+    }
+}

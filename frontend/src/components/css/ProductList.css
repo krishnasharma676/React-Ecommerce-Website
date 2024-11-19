@@ -15,6 +15,12 @@
     border-collapse: collapse; /* Collapse borders */
 }
 
+.product-image-thumbnail {
+    height: 50px;
+    object-fit: cover;
+}
+
+
 .product-table-header {
     background-color: #007bff; /* Header background color */
     color: white; /* Header text color */
@@ -35,4 +41,11 @@
 .product-category,
 .product-company {
     padding: 10px; /* Padding for cells */
+}
+
+.search-input{
+    width: 200px !important;
+    padding: 4px !important;
+    float: inline-end !important;
+    margin-bottom: 10px !important;
 }

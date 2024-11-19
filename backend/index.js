@@ -2,10 +2,15 @@ const express = require('express')
 require('./db/config')
 const app = express()
 const User = require('./db/user')
+const multer = require('multer');
 const cors = require('cors');
 const Product = require('./db/Product');
 const jwt = require('jsonwebtoken');
 const jwtKey = 'E-commerce';
+
+// Set up multer to store images in memory as Buffer
+const storage = multer.memoryStorage(); // Store the file in memory as a Buffer
+const upload = multer({ storage: storage });
 
 app.use(cors());
 
@@ -44,11 +49,34 @@ app.post("/login", async (req, res) => {
     }
 })
 
-app.post("/add-product",verifyToken, async (req, res) => {
-    let product = new Product(req.body)
-    let result = await product.save();
-    res.send(result);
-})
+app.post("/add-product", verifyToken, upload.single('productImage'), async (req, res) => {
+    try {
+        const { name, price, category, company, userId } = req.body;
+
+        if (!req.file) {
+            return res.status(400).send("No image uploaded.");
+        }
+
+        // Convert the image buffer to Base64 string
+        const base64Image = req.file.buffer.toString('base64'); // Buffer to Base64
+
+        // Save product data with Base64 image in DB
+        const newProduct = new Product({
+            name,
+            price,
+            category,
+            company,
+            userId,
+            productImage: base64Image // Save Base64 image
+        });
+
+        const result = await newProduct.save();
+        res.status(201).send(result); // Send the saved product as a response
+    } catch (error) {
+        console.error("Error adding product:", error);
+        res.status(500).send("Failed to add product.");
+    }
+});
 
 app.get("/products",verifyToken, async (req, res) => {
     let product = await Product.find()
